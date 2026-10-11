@@ -3,176 +3,372 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Simple monthly plans for a fictional app.">
-  <title>Hello, pricing! — Anja</title>
+  <meta name="description" content="RouteSense route optimisation software for delivery fleets.">
+  <title>RouteSense | Smarter delivery routes</title>
   <style>
     :root {
       color-scheme: light;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: #172033;
-      background: #f5f7fb;
+      color: #263247;
+      background: #fff;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
       min-width: 320px;
-      min-height: 100vh;
-      padding: 48px 20px;
-      background: radial-gradient(ellipse at top, #e8efff 0, #f5f7fb 48rem);
-    }
-
-    main {
-      width: min(100%, 960px);
-      margin: 0 auto;
-    }
-
-    header { margin-bottom: 32px; }
-
-    .eyebrow {
-      margin: 0 0 8px;
-      color: #52617a;
-      font-size: .9rem;
-      font-weight: 650;
-      letter-spacing: .04em;
-    }
-
-    h1 {
       margin: 0;
-      font-size: clamp(2rem, 7vw, 3.25rem);
-      line-height: 1.1;
-      letter-spacing: -.04em;
-    }
-
-    .intro {
-      max-width: 54ch;
-      margin: 12px 0 0;
-      color: #52617a;
+      font-size: 16px;
       line-height: 1.6;
     }
 
-    .plans {
+    a { color: inherit; }
+
+    .wrap {
+      width: min(100% - 40px, 1100px);
+      margin-inline: auto;
+    }
+
+    header {
+      border-bottom: 1px solid #e7eaf0;
+      background: #fff;
+    }
+
+    .nav-row {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: #0F172A;
+      font-size: 1.25rem;
+      font-weight: 750;
+      letter-spacing: -.03em;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 4px;
+    }
+
+    nav a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 11px;
+      border-radius: 8px;
+      color: #39465b;
+      font-weight: 550;
+      text-decoration: none;
+    }
+
+    nav a:hover, nav a:focus-visible { background: #f1f4f9; color: #0F172A; }
+
+    h1, h2, h3 { color: #0F172A; line-height: 1.2; }
+
+    .hero {
+      padding: clamp(64px, 11vw, 120px) 0;
+      background: #f6f8fb;
+      text-align: center;
+    }
+
+    .hero-inner { max-width: 760px; margin: 0 auto; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 4rem);
+      letter-spacing: -.045em;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 20px auto 28px;
+      color: #4b5870;
+      font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border: 2px solid #0F172A;
+      border-radius: 8px;
+      background: #0F172A;
+      color: #fff;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .button:hover, .button:focus-visible { background: #25334e; border-color: #25334e; }
+
+    section.content-section { padding: 76px 0; }
+
+    section.content-section h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      letter-spacing: -.035em;
+    }
+
+    .section-lead { max-width: 700px; margin: 0; color: #526078; }
+
+    .benefits-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      align-items: stretch;
+      gap: 18px;
+      margin-top: 32px;
     }
 
-    .plan {
+    .benefit {
       padding: 24px;
-      border: 1px solid #dce3ef;
-      border-radius: 18px;
+      border: 1px solid #e3e8f0;
+      border-radius: 12px;
       background: #fff;
-      box-shadow: 0 8px 24px rgb(25 44 78 / 5%);
     }
 
-    .plan.featured {
-      border: 2px solid #526de0;
-      padding: 23px;
+    .benefit strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #0F172A;
+      font-size: 1.45rem;
+      line-height: 1.3;
     }
 
-    .plan h2 { margin: 0; font-size: 1.2rem; }
+    .benefit p { margin: 0; color: #526078; }
 
-    .price {
-      margin: 16px 0 6px;
-      font-size: 2rem;
-      font-weight: 750;
-      letter-spacing: -.04em;
-    }
+    #how { background: #f6f8fb; }
 
-    .price span {
-      color: #66738a;
-      font-size: .95rem;
-      font-weight: 450;
-      letter-spacing: 0;
-    }
-
-    .description {
-      min-height: 2.8em;
-      margin: 0 0 20px;
-      color: #66738a;
-      font-size: .92rem;
-      line-height: 1.5;
-    }
-
-    ul {
+    .steps {
       display: grid;
-      gap: 12px;
-      margin: 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      margin: 32px 0 0;
       padding: 0;
       list-style: none;
+      counter-reset: steps;
     }
 
-    li { color: #344158; line-height: 1.45; }
+    .steps li { counter-increment: steps; }
 
-    li::before {
-      content: "✓";
-      margin-right: 9px;
-      color: #425dcb;
+    .steps li::before {
+      content: counter(steps, decimal-leading-zero);
+      display: block;
+      margin-bottom: 12px;
+      color: #0F172A;
+      font-size: 1.1rem;
       font-weight: 750;
     }
 
-    footer {
+    .steps h3 { margin: 0 0 8px; font-size: 1.15rem; }
+    .steps p { margin: 0; color: #526078; }
+
+    #pricing { min-height: 190px; }
+    #pricing h2 { margin-bottom: 0; }
+
+    .faq-list {
+      display: grid;
+      gap: 22px;
+      max-width: 820px;
       margin-top: 28px;
-      color: #66738a;
-      font-size: .9rem;
+    }
+
+    .faq-list h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .faq-list p { margin: 0; color: #526078; }
+
+    #contact { background: #f6f8fb; }
+    #contact p { margin: 0; color: #526078; }
+    #contact a { color: #0F172A; font-weight: 650; }
+
+    footer {
+      padding: 24px 0;
+      color: #58657a;
+      font-size: 14px;
       text-align: center;
     }
 
     @media (max-width: 700px) {
-      body { padding: 32px 16px; }
-      header { margin-bottom: 24px; }
-      .plans { grid-template-columns: 1fr; gap: 12px; }
-      .plan, .plan.featured { padding: 21px; }
-      .description { min-height: 0; }
+      .wrap { width: min(100% - 32px, 1100px); }
+      .nav-row { align-items: flex-start; flex-direction: column; gap: 8px; padding: 16px 0 10px; }
+      nav { width: 100%; justify-content: flex-start; gap: 0; }
+      nav a { padding: 0 10px; }
+      .benefits-grid, .steps { grid-template-columns: 1fr; gap: 14px; }
+      section.content-section { padding: 56px 0; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="eyebrow">Made by Anja</p>
-      <h1>Hello, pricing!</h1>
-      <p class="intro">Find the right plan for your day. All plans are simple, flexible, and billed monthly.</p>
-    </header>
+  <header>
+    <div class="wrap nav-row">
+      <a class="brand" href="#top">RouteSense</a>
+      <nav aria-label="Main menu">
+        <a href="#benefits">Benefits</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <section class="plans" aria-label="Monthly plans for Daylight">
-      <article class="plan">
-        <h2>Free</h2>
-        <p class="price">€0 <span>/ month</span></p>
-        <p class="description">A calm place to get started.</p>
-        <ul>
-          <li>3 active projects</li>
-          <li>Basic task lists</li>
-          <li>Community support</li>
-        </ul>
-      </article>
-
-      <article class="plan featured">
-        <h2>Basic</h2>
-        <p class="price">€8 <span>/ month</span></p>
-        <p class="description">More room for your routines.</p>
-        <ul>
-          <li>Unlimited projects</li>
-          <li>Calendar and reminders</li>
-          <li>Email support</li>
-        </ul>
-      </article>
-
-      <article class="plan">
-        <h2>Pro</h2>
-        <p class="price">€16 <span>/ month</span></p>
-        <p class="description">A little extra focus for your team.</p>
-        <ul>
-          <li>Everything in Basic</li>
-          <li>Shared team workspaces</li>
-          <li>Priority support</li>
-        </ul>
-      </article>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <h1 id="hero-title">Make every delivery route count.</h1>
+        <p>RouteSense helps delivery fleets plan efficient routes and save time and fuel.</p>
+        <a class="button" href="#pricing">Explore RouteSense</a>
+      </div>
     </section>
 
-    <footer>Daylight · A fictional app for brighter, simpler days</footer>
+    <section class="content-section" id="benefits" aria-labelledby="benefits-title">
+      <div class="wrap">
+        <h2 id="benefits-title">More efficient delivery days</h2>
+        <p class="section-lead">RouteSense helps small and medium-sized delivery fleets make the most of every shift. Our route optimisation software is designed for fleet managers and drivers alike.</p>
+        <div class="benefits-grid">
+          <article class="benefit">
+            <strong>Up to 18% lower</strong>
+            <p>Fuel consumption with more efficient delivery paths.</p>
+          </article>
+          <article class="benefit">
+            <strong>1.5 hours saved</strong>
+            <p>Per driver daily, leaving more time for deliveries.</p>
+          </article>
+          <article class="benefit">
+            <strong>25% more</strong>
+            <p>Completed deliveries with better planned routes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 id="how-title">How it works</h2>
+        <p class="section-lead">Get routes ready for the day in three simple steps.</p>
+        <ol class="steps">
+          <li>
+            <h3>Add your deliveries</h3>
+            <p>Import delivery addresses; Pro also supports webshop API integrations.</p>
+          </li>
+          <li>
+            <h3>Plan efficient routes</h3>
+            <p>RouteSense generates optimised route schedules.</p>
+          </li>
+          <li>
+            <h3>Get drivers on the road</h3>
+            <p>Drivers follow turn-by-turn routes with real-time GPS tracking.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="content-section" id="pricing" aria-labelledby="pricing-title">
+      <div class="wrap">
+        <h2 id="pricing-title">Pricing</h2>
+        <style>
+          #pricing .pricing-value { margin: 0 0 24px; color: #526078; }
+          #pricing .pricing-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+          #pricing .pricing-card { display: flex; flex-direction: column; padding: 24px; border: 1px solid #e3e8f0; border-radius: 12px; background: #fff; }
+          #pricing .pricing-card.recommended { border: 2px solid #0F172A; }
+          #pricing .pricing-badge { align-self: flex-start; margin: -8px 0 12px; padding: 3px 9px; border-radius: 999px; background: #0F172A; color: #fff; font-size: .8rem; font-weight: 650; }
+          #pricing .pricing-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+          #pricing .pricing-price { margin: 0 0 14px; color: #0F172A; font-size: 1.8rem; font-weight: 750; line-height: 1.25; }
+          #pricing .pricing-price span { font-size: 1rem; font-weight: 500; }
+          #pricing .pricing-audience { margin: 0 0 14px; color: #526078; }
+          #pricing .pricing-card ul { margin: 0 0 22px; padding-left: 20px; }
+          #pricing .pricing-card li { margin: 0 0 6px; }
+          #pricing .pricing-card .button { width: 100%; margin-top: auto; }
+          #pricing .pricing-note { margin: 16px 0 0; color: #526078; font-size: .875rem; }
+          @media (max-width: 700px) { #pricing .pricing-cards { grid-template-columns: 1fr; gap: 14px; } }
+        </style>
+        <p class="pricing-value">Cut fuel costs by up to 18% and deliver 25% more packages every day.</p>
+        <div class="pricing-cards">
+          <article class="pricing-card">
+            <h3>Free Plan</h3>
+            <p class="pricing-price">€0 <span>/month</span></p>
+            <p class="pricing-audience">Local craftsmen and small delivery setups</p>
+            <ul>
+              <li>Up to 2 vehicles</li>
+              <li>Basic route optimization (max 10 stops)</li>
+              <li>Google Maps export</li>
+            </ul>
+            <a class="button" href="#contact">Choose Free Plan</a>
+          </article>
+          <article class="pricing-card recommended">
+            <span class="pricing-badge">Recommended</span>
+            <h3>Basic Plan</h3>
+            <p class="pricing-price">€29 <span>/month</span></p>
+            <p class="pricing-audience">Small local delivery services</p>
+            <ul>
+              <li>Up to 10 vehicles</li>
+              <li>Unlimited stops</li>
+              <li>Real-time GPS driver tracking</li>
+              <li>Automated SMS delivery alerts</li>
+            </ul>
+            <a class="button" href="#contact">Choose Basic Plan</a>
+          </article>
+          <article class="pricing-card">
+            <h3>Pro Plan</h3>
+            <p class="pricing-price">€89 <span>/month</span></p>
+            <p class="pricing-audience">Medium and growing logistics fleets</p>
+            <ul>
+              <li>Unlimited vehicles</li>
+              <li>Webshop API integrations</li>
+              <li>Advanced fuel analytics</li>
+              <li>24/7 dedicated support</li>
+            </ul>
+            <a class="button" href="#contact">Choose Pro Plan</a>
+          </article>
+        </div>
+        <p class="pricing-note">Annual billing -15% discount; 14-day free trial on Pro Plan. All prices exclude VAT.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="faq" aria-labelledby="faq-title">
+      <div class="wrap">
+        <h2 id="faq-title">Frequently asked questions</h2>
+        <div class="faq-list">
+          <article>
+            <h3>Who is RouteSense for?</h3>
+            <p>Small and medium-sized delivery companies, logistics fleets, local bakeries, florists, and courier services.</p>
+          </article>
+          <article>
+            <h3>How do I add delivery addresses?</h3>
+            <p>You can import addresses; webshop API integrations are available on the Pro Plan.</p>
+          </article>
+          <article>
+            <h3>How are routes planned?</h3>
+            <p>RouteSense generates the shortest and most fuel-efficient delivery paths.</p>
+          </article>
+          <article>
+            <h3>Can I track drivers?</h3>
+            <p>Yes. The Basic and Pro Plans include real-time GPS tracking for drivers.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Contact</h2>
+        <p>Have a question? Email us at <a href="mailto:contact@routesense-demo.com">contact@routesense-demo.com</a>.</p>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap">© 2026 RouteSense student project, fictitious company</div>
+  </footer>
 </body>
 </html>
